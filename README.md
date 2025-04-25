@@ -19,9 +19,10 @@ It should:
 
 ## Rules
 
-- Clone this repository.
 - We suggest spending no longer than **4 hours**.
 - Commit often with meaningful messages.
+- Write tests.
+- Use the provided [`openapi.yaml`](./openapi.yaml) as a reference.
 - Focus on clean, maintainable code.
 
 ## Deliverables
@@ -29,7 +30,6 @@ It should:
 - Working code.
 - Simple UI.
 - RESTful API matching the OpenAPI spec.
-- Ability to delete shortened URLs.
 - Tests.
 - Dockerfile.
 - README with:
