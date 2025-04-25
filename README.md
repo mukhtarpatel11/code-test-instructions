@@ -20,7 +20,7 @@ It should:
 ## Rules
 
 - Clone this repository.
-- Complete the task within **4 hours**.
+- We suggest spending no longer than **4 hours**.
 - Commit often with meaningful messages.
 - Focus on clean, maintainable code.
 
