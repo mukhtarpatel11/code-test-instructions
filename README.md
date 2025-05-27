@@ -19,7 +19,8 @@ It should:
 
 ## Rules
 
-- We suggest spending no longer than **4 hours**.
+- Fork the repository and work in your fork. Do not push directly to the main repository.
+- We suggest spending no longer than **4 hours**, but you can take longer if needed.
 - Commit often with meaningful messages.
 - Write tests.
 - Use the provided [`openapi.yaml`](./openapi.yaml) as a reference.
