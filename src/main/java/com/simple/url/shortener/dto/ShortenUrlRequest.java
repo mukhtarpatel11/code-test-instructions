@@ -8,8 +8,9 @@ public class ShortenUrlRequest {
 
     String customAlias;
 
-    public ShortenUrlRequest(String fullUrl) {
+    public ShortenUrlRequest(String fullUrl, String customAlias) {
         this.fullUrl = fullUrl;
+        this.customAlias = customAlias;
     }
 
     public ShortenUrlRequest() {

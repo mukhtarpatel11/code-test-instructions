@@ -1,39 +1,59 @@
-# URL Shortener Coding Task
+# Simple URL Shortener
 
-## Task
+## Run application locally
 
-Build a simple **URL shortener** in a ** preferably JVM-based language** (e.g. Java, Kotlin).
+- Install docker
+- clone repository
+- Launch a terminal, from the root of the project _run docker-compose up --build_
 
-It should:
+## To create a new short url using UI
 
-- Accept a full URL and return a shortened URL.
-- Persist the shortened URLs across restarts.
-- Allow a user to **customise the shortened URL** (e.g. user provides `my-custom-alias` instead of a random string).
-- Expose a **simple UI** (basic form is fine — no need for a polished design).
-- Expose a **RESTful API** to perform create/read/delete operations on URLs.  
-  → Refer to the provided [`openapi.yaml`](./openapi.yaml) for API structure and expected behaviour.
-- Include the ability to **delete a shortened URL** via the API.
-- **Have tests**.
-- Be containerised (e.g. Docker).
-- Include instructions for running locally.
+- On a browser navigate to http://localhost:8080/
+- Enter a fully qualified url, alias is optional
+- Select Shorten to generate a short url
+- The new url will be displayed at the bottom, click on it to navigate.
 
-## Rules
+## Using API
 
-- Fork the repository and work in your fork. Do not push directly to the main repository.
-- We suggest spending no longer than **4 hours**, but you can take longer if needed.
-- Commit often with meaningful messages.
-- Write tests.
-- Use the provided [`openapi.yaml`](./openapi.yaml) as a reference.
-- Focus on clean, maintainable code.
+There are several options when it comes to invoking REST API, for this example we use curl
 
-## Deliverables
+- To list existing shortened endpoints
 
-- Working code.
-- Simple UI.
-- RESTful API matching the OpenAPI spec.
-- Tests.
-- Dockerfile.
-- README with:
-  - How to build and run locally.
-  - Example usage (UI and/or API).
-  - Any notes or assumptions.
+  _curl --location --request GET 'localhost:8080/urls'_
+
+
+- To shorten url with alias
+
+  _curl --location --request POST 'localhost:8080/shorten' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "fullUrl" : "http://www.itv.co.uk",
+    "customAlias" : "i"
+}'_
+
+
+- To shorten url without alias
+
+  curl --location --request POST 'localhost:8080/shorten' \
+_--header 'Content-Type: application/json' \
+--data-raw '{
+    "fullUrl" : "http://www.itv.co.uk"
+}'_
+
+
+- To redirect to a shortened url supply the alias as a path parameter via GET call. Alias can be obtained by invoking the urls endpoint
+
+  curl --location --request GET 'localhost:8080/47SDa'
+
+
+- To delete a existing shortened url supply the alias as a path parameter via DELETE call. Alias can be obtained by invoking the urls endpoint
+
+  curl --location --request DELETE 'localhost:8080/47SDa'
+
+## Assumptions
+
+- Basic client side URL validation is performed.
+- For redirects a 302 response code is used, which as per Open API spec will handle redirects.
+- Does not implement race condition handling
+- Does not implement security, it is assumed the application will only run locally.
+- For the sake of this example an embedded H2 database is used

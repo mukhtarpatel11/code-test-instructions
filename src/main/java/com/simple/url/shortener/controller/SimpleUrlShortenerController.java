@@ -70,8 +70,9 @@ public class SimpleUrlShortenerController {
         return ResponseEntity.ok(list);
     }
 
-    // --- BASIC WEB PAGE ---
-
+    /**
+     * Basic web page
+     */
     @GetMapping("/")
     public String index() {
         return "index";
