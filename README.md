@@ -11,7 +11,10 @@
 - On a browser navigate to http://localhost:8080/
 - Enter a fully qualified url, alias is optional
 - Select Shorten to generate a short url
-- The new url will be displayed at the bottom, click on it to navigate.
+- The new url will be displayed at the bottom as shown below, click on it to navigate.
+
+![img_1.png](img_1.png)
+
 
 ## Using API
 
