@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>URL Shortener</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        input[type="url"],
+        input[type="text"] {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            outline: none;
+        }
+
+        button {
+            background-color: #2563eb;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e40af;
+        }
+
+        .result, .error {
+            margin-top: 1.5rem;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.75rem;
+        }
+
+        .result {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        a {
+            text-decoration: underline;
+            color: inherit;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple URL Shortener</h1>
+        <form method="post" action="/shorten-url">
+            <label>
+                Full URL:
+                <input type="url" name="fullUrl" required/>
+            </label>
+            <label>
+                Custom Alias (optional):
+                <input type="text" name="customAlias"/>
+            </label>
+            <button type="submit">Shorten</button>
+        </form>
+
+        <div th:if="${shortUrl}" class="result">
+            <p>Shortened URL: <a th:href="${shortUrl}" th:text="${shortUrl}"></a></p>
+        </div>
+        <div th:if="${error}" class="error">
+            <p th:text="${error}"></p>
+        </div>
+    </div>
+</body>
+</html>
